@@ -156,6 +156,8 @@ class _MailPageState extends State<MailPage> {
                         buttonColor: const Color(0xffee5366),
                         buttonTextColor: Colors.white,
                         buttonText: 'Refresh',
+                        buttonWidth: 20,
+                        hideButton: false,
                       ),
                       titleTextStyle: const TextStyle(
                         fontSize: 25,

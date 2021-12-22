@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: SafeArea(
           bottom: false,
-          child: Builder(builder: (context) => MailPage()),
+          child: Builder(builder: (context) => const MailPage()),
         ),
       ),
     );
