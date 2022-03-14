@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MailTile extends StatelessWidget {
   final Mail mail;
 
-  const MailTile(this.mail);
+  const MailTile(this.mail, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -75,55 +75,73 @@ class _MailPageState extends State<MailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: const Color(0xffEE5366),
+        centerTitle: true,
+        title: const Text(
+          'Empty PlaceHolder',
+          style: TextStyle(color: Colors.white),
+        ),
+        actions: [
+          PopupMenuButton(
+            icon: const Icon(
+              Icons.more_vert,
+              color: Colors.white,
+            ),
+            onSelected: (value) {
+              setState(() {
+                dropdownValue = value as String;
+                _changePlaceHolderImage(dropdownValue);
+              });
+            },
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                child: Text("Image"),
+                value: "Image",
+              ),
+              const PopupMenuItem(
+                child: Text("SVG"),
+                value: "SVG",
+              ),
+              const PopupMenuItem(
+                child: Text("Flare"),
+                value: "Flare",
+              ),
+              const PopupMenuItem(
+                child: Text("Rive"),
+                value: "Rive",
+              ),
+              const PopupMenuItem(
+                child: Text("Rive HTTP"),
+                value: "Rive HTTP",
+              ),
+              const PopupMenuItem(
+                child: Text("GIF"),
+                value: "GIF",
+              ),
+            ],
+          )
+        ],
+      ),
       body: SafeArea(
         bottom: false,
         child: Column(
           children: <Widget>[
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             const Padding(padding: EdgeInsets.only(top: 8)),
             Visibility(
               visible: mails.isEmpty,
               child: TextButton(
                 onPressed: _getData,
-                child: const Text('Tap here to get Data'),
-              ),
-            ),
-            Visibility(
-              visible: mails.isEmpty,
-              child: DropdownButton<String>(
-                value: dropdownValue,
-                icon: const Icon(Icons.arrow_drop_down),
-                elevation: 16,
-                style: const TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.bold,
+                child: const Text(
+                  'Tap here to get Data',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Color(0xffEE5366),
+                  ),
                 ),
-                underline: Container(
-                  height: 2,
-                  color: Colors.redAccent,
-                ),
-                onChanged: (String? newValue) {
-                  _changePlaceHolderImage(newValue);
-                  setState(() {
-                    dropdownValue = newValue!;
-                  });
-                },
-                items: <String>[
-                  'Image',
-                  'SVG',
-                  'Flare',
-                  'Rive',
-                  'Rive HTTP',
-                  'GIF'
-                ].map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
               ),
             ),
             Expanded(
