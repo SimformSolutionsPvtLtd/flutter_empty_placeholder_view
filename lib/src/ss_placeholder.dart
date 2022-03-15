@@ -142,10 +142,10 @@ class SSPlaceholder extends StatelessWidget {
               state != PlaceHolderState.loading && !buttonConfig!.hideButton,
           child: SSPlaceholderRefreshButton(
             onTap: onButtonClick ?? () {},
-            height: 46,
+            height: buttonConfig?.buttonHeight,
             width: buttonConfig?.buttonWidth ?? 120,
             color: buttonConfig?.buttonColor,
-            textColor: buttonConfig?.buttonTextColor,
+            buttonTextStyle: buttonConfig?.buttonTextStyle,
             title: buttonConfig?.buttonText ??
                 (state == PlaceHolderState.success
                     ? AppStrings.refresh
@@ -219,10 +219,10 @@ class SSPlaceholder extends StatelessWidget {
               state != PlaceHolderState.loading && !buttonConfig!.hideButton,
           child: SSPlaceholderRefreshButton(
             onTap: onButtonClick ?? () {},
-            height: 46,
+            height: buttonConfig?.buttonHeight,
             width: buttonConfig?.buttonWidth ?? 120,
             color: buttonConfig?.buttonColor,
-            textColor: buttonConfig?.buttonTextColor,
+            buttonTextStyle: buttonConfig?.buttonTextStyle,
             title: buttonConfig?.buttonText ??
                 (state == PlaceHolderState.success
                     ? AppStrings.refresh

@@ -12,8 +12,8 @@ class MailPage extends StatefulWidget {
 
 class _MailPageState extends State<MailPage> {
   List<Mail> mails = [];
-  PlaceHolderState placeholderState = PlaceHolderState.loading;
-  String dropdownValue = 'GIF';
+  PlaceHolderState placeholderState = PlaceHolderState.error;
+  String selectedMenuItem = 'GIF';
   String placeholderImage = 'assets/christmas.gif';
   int id = 1;
 
@@ -90,8 +90,8 @@ class _MailPageState extends State<MailPage> {
             ),
             onSelected: (value) {
               setState(() {
-                dropdownValue = value as String;
-                _changePlaceHolderImage(dropdownValue);
+                selectedMenuItem = value as String;
+                _changePlaceHolderImage(selectedMenuItem);
               });
             },
             itemBuilder: (context) => [
@@ -132,7 +132,7 @@ class _MailPageState extends State<MailPage> {
             ),
             const Padding(padding: EdgeInsets.only(top: 8)),
             Visibility(
-              visible: mails.isEmpty,
+              visible: false,
               child: TextButton(
                 onPressed: _getData,
                 child: const Text(
@@ -143,6 +143,32 @@ class _MailPageState extends State<MailPage> {
                   ),
                 ),
               ),
+            ),
+            Row(
+              children: const [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: null,
+                    child: Text('Loading'),
+                  ),
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: (){},
+                    child: Text('Success'),
+                  ),
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        placeholderState = PlaceHolderState.error;
+                      });
+                    },
+                    child: Text('Error'),
+                  ),
+                )
+              ],
             ),
             Expanded(
               child: SSPlaceholder(
@@ -161,7 +187,7 @@ class _MailPageState extends State<MailPage> {
                 loadingConfig: LoadingConfig(
                   loadingTitle: 'Loading Title',
                   loadingSubtitle: 'Loading subtitle',
-                  loadingWidgetName: LoaderName.hourGlass,
+                  loadingWidgetName: LoaderName.threeBounce,
                   loadingColor: const Color(0xffee5366),
                   loadingSize: 40,
                   isLoadingOnTop: false,
@@ -175,16 +201,22 @@ class _MailPageState extends State<MailPage> {
                 ),
                 buttonConfig: ButtonConfig(
                   buttonColor: const Color(0xffee5366),
-                  buttonTextColor: Colors.white,
                   buttonText: 'Refresh',
+                  buttonWidth: 130,
+                  buttonHeight: 46,
+                  buttonTextStyle: const TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'RobotoMono',
+                    color: Colors.white,
+                  ),
                 ),
                 titleTextStyle: const TextStyle(
                   fontSize: 25,
-                  fontFamily: 'BebasNeue',
+                  fontFamily: 'RobotoMono',
                 ),
                 subTitleTextStyle: const TextStyle(
                   fontSize: 20,
-                  fontFamily: 'BebasNeue',
+                  fontFamily: 'RobotoMono',
                 ),
                 onButtonClick: _getData,
               ),
